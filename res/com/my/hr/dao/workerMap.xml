@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='dao.map'>
+	<select id='selectWorkers' resultMap='WorkerMap'>
+		select worker_id workerId, worker_name workerName, reg_date regDate
+		from workers
+		order by workers
+	</select>
+	
+	<resultMap type='workerMap' id='myWorker'>
+	<id property='userId' column='user_id'/>
+		<result property='userName' column='user_name'/>
+		<result property='regDate' column='reg_date'/>
+	</resultMap>
+	
+	<insert id='insertWorker'>
+		insert into workers values(
+			#{workerId, jdbcType=NUMERIC}, 
+			#{workerName, jdbcType=VARCHAR},
+			#{regDate, jdbcType=DATE}))
+	</insert>
+	
+	<update id='updateWorekr'>
+		update workers
+		set worker_name = #{workerName}, reg_date = #{regDate}
+		where worker_id = #{workerId}
+	</update>
+	
+	<delete id='deleteWorker'>
+		delete users
+		where user_id = #{userId}
+	</delete>
+</mapper>
